@@ -1,0 +1,191 @@
+﻿html {
+    overflow-x: hidden;
+    width:100vw;
+}
+
+body {
+    overflow-x: hidden;
+    width: 100vw;
+    font-family: "Redressed",Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+.main-container {
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+    .main-container > .get-started-container {
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        padding-left: 5%;
+    }
+
+        .main-container > .get-started-container > p {
+            color: #2d29f2;
+            font-size: 80px;
+            font-weight: bold;
+            font-family: "Redressed",Arial, "Helvetica Neue", Helvetica, sans-serif;
+            line-height: 7rem;
+            text-transform: capitalize;
+        }
+
+    .main-container > .brain-container > .brain-img {
+        height: 50vh;
+    }
+
+.main-btn-container {
+    width: 220px;
+    height: 50px;
+}
+
+.main-btn {
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    box-shadow: 9px 10px 10px 3px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s linear;
+    background-color: #2d29f2;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+    .main-btn:hover {
+        color: white;
+        text-decoration: none;
+        letter-spacing: 2px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+
+
+/******************** top 3 ***************************/
+.top3-container {
+    background-color: #2d29f2;
+    height: 74vh;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+    .top3-container > .top3-text {
+        padding-top: 15px;
+        width: 80vw;
+        height: 17vh;
+        color: white;
+        font-size: 55px;
+        font-weight: bold;
+    }
+
+    .top3-container > .top3-cards {
+        width: 80vw;
+        height: 57vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+        .top3-container > .top3-cards > .top3-card {
+            width: 25vw;
+            height: 40vh;
+            border: dashed 3px #090871;
+            border-bottom: none;
+            font-family: "Redressed",Arial, "Helvetica Neue", Helvetica, sans-serif;
+        }
+
+        .top3-container > .top3-cards > .winner {
+            height: 50vh;
+            width: 30vw;
+            background-color: #090871;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+
+        .top3-container > .top3-cards > .top3-card > .card-item {
+            display: flex;
+            height: 6.5vh;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding-left: 20px;
+            margin-top: 20px;
+            vertical-align: auto;
+        }
+
+
+
+/******************** whatIQ ***************************/
+.whatIQ-section {
+    color: #2d29f2;
+    font-size: 60px;
+    font-weight: bold;
+    min-height: 50vh;
+    min-width: 100vw;
+    margin-bottom: 100px;
+    
+    
+}
+
+.whatIQ-text {
+    color: #2d29f2;
+    font-size: 33px;
+    font-weight: bold;
+    padding-left: 70px;
+    letter-spacing: 1px;
+    margin-top: 100px;
+    text-wrap:normal;
+}
+
+.whatIQ-btn-container {
+    margin-top: 60px;
+    overflow:visible;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap:nowrap;
+}
+
+.whatIQ-img {
+    height: 350px;
+    margin-right: -50px;
+}
+
+.whatIQ-btn {
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    background-color: white;
+    color: #2d29f2;
+    width: 275px;
+    height: 65px;
+    border-radius: 5px;
+    box-shadow: 9px 13px 15px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s linear;
+    font-size: 25px;
+    cursor: pointer;
+    z-index:3;
+}
+
+    .whatIQ-btn:hover {
+        text-decoration: none;
+        letter-spacing: 2px;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.huge-text {
+    font-size: 120px;
+    font-weight: 800;
+}
