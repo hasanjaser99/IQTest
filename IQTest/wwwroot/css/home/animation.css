@@ -1,0 +1,14 @@
+﻿
+.top3-container > .top3-cards {
+    animation: fadein 1s linear forwards;
+}
+
+@keyframes fadein {
+    from {
+        transform: translateX(-1500px);
+    }
+
+    to {
+        transform: translateX(0px);
+    }
+}

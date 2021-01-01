@@ -2,8 +2,152 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section Css {
 
+    <link rel="stylesheet" href="/css/home/home.css">
+    <link rel="stylesheet" href="/css/home/animation.css">
+    <link rel="stylesheet" href="/css/home/responsive.css">
+}
+
+
+<!--- first lock -->
+<div class="row main-container ">
+    <div class="get-started-container col-12 col-lg-6">
+        <p>
+            TEST YOUR
+            <br>
+            <span class="huge-text">
+                IQ
+            </span>
+        </p>
+        <div class="main-btn-container center ">
+            <a class="main-btn center">Get Started</a>
+        </div>
+    </div>
+
+    <div class="brain-container col-12 col-lg-6 center ">
+        <img src="/images/staticImages/brain.png" class="brain-img" asp-append-version="true">
+    </div>
+</div>
+
+
+
+<!--- top #3 -->
+
+<div class="row center top3-container">
+    <div class="top3-text center">
+        <p>TOP #3</p>
+    </div>
+    <div class="top3-cards wow">
+
+        <div class="top3-card" style="border-right: none;">
+            <div class="center  mt-2">
+                <img src="/images/staticImages/star.png" style="margin-right: 20px;" width="50px">
+                <img src="/images/staticImages/star.png" width="50px">
+            </div>
+
+            <div class="card-item">
+                <img src="/images/staticImages/name.png"
+                     width="40px" height="40px"
+                     class="mr-2">
+                Yazan Hindi
+            </div>
+
+            <div class="card-item">
+                <img src="/images/staticImages/target.png"
+                     width="40px" height="40px"
+                     class="mr-2">
+                77%
+            </div>
+
+            <div class="card-item">
+                <img src="/images/staticImages/stopwatch.png"
+                     width="40px" height="40px"
+                     class="mr-2">
+                25:06
+            </div>
+
+        </div>
+
+
+        <div class="top3-card winner">
+            <div class="center  mt-2">
+                <img src="/images/staticImages/score.png" width="150px">
+            </div>
+
+            <div class="card-item">
+                <img src="/images/staticImages/name.png"
+                     width="45px" height="40px"
+                     class="mr-2">
+                Yazan Hindi
+            </div>
+
+            <div class="card-item">
+                <img src="/images/staticImages/target.png"
+                     width="45px" height="45px"
+                     class="mr-2">
+                77%
+            </div>
+
+            <div class="card-item">
+                <img src="/images/staticImages/stopwatch.png"
+                     width="45px" height="45px"
+                     class="mr-2">
+                25:06
+            </div>
+
+        </div>
+
+
+        <div class="top3-card" style="border-left: none;">
+            <div class="center  mt-2">
+                <img src="/images/staticImages/star.png" width="50px">
+            </div>
+
+            <div class="card-item">
+                <img src="/images/staticImages/name.png"
+                     width="40px" height="40px"
+                     class="mr-2">
+                Yazan Hindi
+            </div>
+
+            <div class="card-item">
+                <img src="/images/staticImages/target.png"
+                     width="40" height="40"
+                     class="mr-2">
+                77%
+            </div>
+
+            <div class="card-item">
+                <img src="/images/staticImages/stopwatch.png"
+                     width="40" height="40"
+                     class="mr-2">
+                25:06
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+<!--- what is IQ Test --->
+<div class="whatIQ-section">
+    <div class="row ">
+        <div class=" col-12 center ml-3" style="height: 20vh;">
+            What Is IQ Test ?
+        </div>
+    </div>
+    <div class="row justify-content-between ">
+        <div class="col-12 col-lg-6 whatIQ-text ml-3">
+            Simple IQ test is a<br /> test
+            that Measure your intelligence<br> quotient with some exciting qustions.
+        </div>
+        <div class="col-12 col-lg-5 whatIQ-btn-container wow animate__animated animate__fadeInRight">
+            <img class=" whatIQ-img" src="/images/staticImages/blob.png" />
+            <a class=" whatIQ-btn center">Get Started</a>
+        </div>
+    </div>
 </div>
