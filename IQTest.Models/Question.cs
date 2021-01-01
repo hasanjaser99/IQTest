@@ -10,6 +10,8 @@ namespace IQTest.Models
 
         public string Title { get; set; }
 
+        public string QuestionImage { get; set; }
+
         public string Choice1 { get; set; }
 
         public string Choice2 { get; set; }

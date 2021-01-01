@@ -1,4 +1,6 @@
-﻿using IQTest.Models.ViewModels;
+﻿using IQTest.DataAccess.Data;
+using IQTest.Models;
+using IQTest.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,15 +15,21 @@ namespace IQTest.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _db;
+
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
         {
             _logger = logger;
+            _db = db;
         }
 
         public IActionResult Index()
         {
             return View();
         }
+
+
 
         public IActionResult Privacy()
         {
