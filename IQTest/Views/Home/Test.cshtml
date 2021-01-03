@@ -1,0 +1,89 @@
+﻿@using IQTest.Models.ViewModels 
+@model QuestionVM
+@{
+    ViewData["Title"] = "Test";
+}
+
+@section Css {
+
+    <link rel="stylesheet" href="/css/form/question.css">
+}
+
+<div style="display:flex;justify-content:center;align-items:center;flex-direction:column">
+    <br /><br />
+          <div class="form-container" id="form-question">
+              <partial name="~/Views/Shared/Partials/_QuestionForm.cshtml" model="@Model" />
+          </div>
+
+        <br /><br />
+    </div>
+
+    @section Scripts {
+        <script>
+            function PreviousQuestion() {
+                var previousQuestion = +$('#questionNumber').val() - 1;
+
+                $.ajax({
+                    type: 'POST',
+                    cache: false,
+                    url: `/Home/PreviousQuestion/?number=${previousQuestion}`,
+                    success: function (response) {
+                        $("#form-question").empty();
+                        $("#form-question").html(response);
+                    }
+                });
+
+            }
+
+            function NextQuestion() {
+                var nextQuestion = +$('#questionNumber').val() + 1;
+
+                var selectedChoice = "";
+
+                for (var i = 1; i <= 4; i++) {
+                    if ($("#Choice" + i).is(":checked")) {
+                        selectedChoice = $("#Choice" + i).val();
+                        break;
+                    }
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    cache: false,
+                    url: `/Home/NextQuestion/?number=${nextQuestion}&selectedChoice=${selectedChoice}`,
+                    success: function (response) {
+                        $("#form-question").empty();
+                        $("#form-question").html(response);
+                    }
+                });
+
+            }
+
+            function FinishTest() {
+
+                var finalQuestion = +$('#questionNumber').val();
+
+                var selectedChoice = "";
+
+                for (var i = 1; i <= 4; i++) {
+                    if ($("#Choice" + i).is(":checked")) {
+                        selectedChoice = $("#Choice" + i).val();
+                        break;
+                    }
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    cache: false,
+                    url: `/Home/FinishTest/?fqNumber=${finalQuestion}&selectedChoice=${selectedChoice}`,
+                    success: function (response) {
+                        $("#form-question").empty();
+                        $("#form-question").html(response);
+                    }
+                });
+
+            }
+
+        </script>
+    }
+

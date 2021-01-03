@@ -8,9 +8,11 @@ namespace IQTest.Models
     {
         public Guid Id { get; set; }
 
+        public int Number { get; set; }
+
         public string Title { get; set; }
 
-        public string QuestionImage { get; set; }
+        public string Image { get; set; }
 
         public string Choice1 { get; set; }
 
