@@ -7,6 +7,9 @@
     align-items: center;
     flex-direction: column;
     letter-spacing: 3px;
+    min-height:100vh;
+    margin-left:2vw;
+    margin-right:2vw;
 }
 
 .form-container .timer {
@@ -52,3 +55,8 @@
     }
 
 
+@media (max-width: 600px) {
+    .form-container > h1 {
+        font-size: 1.1rem;
+    }
+}

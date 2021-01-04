@@ -1,72 +1,74 @@
 ﻿@using IQTest.Models.ViewModels
 @model QuestionVM
 
+@{
+    string IsChecked(string value)
+    {
+        if (Model.SelectedChoice == value)
+            return "checked";
+
+        return "";
+    }
+}
 
 <input type="hidden" asp-for="@Model.Question.Number" id="questionNumber" />
 <h1>Question @Model.Question.Number :  @Model.Question.Title</h1>
 <br />
-<img src="@Model.Question.Image" style="width:80%; height:30%;" />
+<img src="@Model.Question.Image" style="width:85vw; height:35%;" />
 <br />
 <br />
 <div class="row" style="padding-top:50px;padding-bottom:50px;">
-    <div class="col-lg-3" style="display:flex;align-items:center;flex-direction:column;">
-        @{ 
-            string IsChecked(string value)
-            {
-                if (Model.SelectedChoice == value)
-                    return "checked";
+    <div class="col-6 col-lg-3 col-md-6" style="display:flex;align-items:center;flex-direction:column;">
 
-                return "";
-            }
-        }
-        <img src="@Model.Question.Choice1" style="width:180px; height:160px;" />
+        <img src="@Model.Question.Choice1" style="width:160px; height:150px;" />
         <br />
-            <input type="radio" name="choices" value="@Model.Question.Choice1" id="Choice1" @IsChecked(Model.Question.Choice1) />
+        <input type="radio" name="choices" value="@Model.Question.Choice1" id="Choice1" @IsChecked(Model.Question.Choice1) />
         <br />
     </div>
 
-    <div class="col-lg-3" style="display:flex;align-items:center;flex-direction:column;">
-        <img src="@Model.Question.Choice2" style="width:180px; height:160px;" />
+    <div class="col-6 col-lg-3 col-md-6" style="display:flex;align-items:center;flex-direction:column;">
+        <img src="@Model.Question.Choice2" style="width:160px; height:150px;" />
         <br />
         <input type="radio" name="choices" value="@Model.Question.Choice2" id="Choice2" @IsChecked(Model.Question.Choice2) />
         <br />
     </div>
-    <div class="col-lg-3" style="display:flex;align-items:center;flex-direction:column;">
-        <img src="@Model.Question.Choice3" style="width:180px; height:160px;" />
+    <div class="col-6 col-lg-3 col-md-6" style="display:flex;align-items:center;flex-direction:column;">
+        <img src="@Model.Question.Choice3" style="width:160px; height:150px;" />
         <br />
         <input type="radio" name="choices" value="@Model.Question.Choice3" id="Choice3" @IsChecked(Model.Question.Choice3) />
         <br />
     </div>
-    <div class="col-lg-3" style="display:flex;align-items:center;flex-direction:column;">
-        <img src="@Model.Question.Choice4" style="width:180px; height:160px;" />
+    <div class="col-6 col-lg-3 col-md-6 " style="display:flex;align-items:center;flex-direction:column;">
+        <img src="@Model.Question.Choice4" style="width:160px; height:150px;" />
         <br />
         <input type="radio" name="choices" value="@Model.Question.Choice4" id="Choice4" @IsChecked(Model.Question.Choice4) />
         <br />
     </div>
 
 </div>
-<div style="display:flex; justify-content:space-between; width:90%">
+<div style="display:flex; justify-content:space-between; width:90vw">
+
+
+
+
+    @if (Model.Question.Number != 1)
+    {
+        <button onclick="PreviousQuestion()" class="main-btn center">Previous</button>
+    }
+    else
+    {
+        <div class="main-btn center " style="opacity:0; cursor:default;"></div>
+    }
+
+
 
     @if (Model.Question.Number != 25)
     {
         <button onclick="NextQuestion()" class="main-btn center">Next</button>
 
-    }else
+    }
+    else
     {
         <button onclick="FinishTest()" class="main-btn center">Finish</button>
-    }
-
-    @if (Model.Question.Number != 1)
-    {
-        if (Model.Question.Number != 25)
-        {
-            <button onclick="PreviousQuestion()" class="main-btn center">Previous</button>
-        }
-        else
-        {
-            <div style="width:100%;text-align:right">
-                <button onclick="PreviousQuestion()" class="main-btn center">Previous</button>
-            </div>
-        }
     }
 </div>
