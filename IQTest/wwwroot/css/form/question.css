@@ -9,8 +9,21 @@
     letter-spacing: 3px;
 }
 
+.form-container .timer {
+    color: #ff3e3e;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
 
-.form-container > h1 {
+.form-container > .form-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.form-container > .form-content > h1 {
     color: #2d29f2;
     font-size: 1.8rem;
     font-weight: bold;

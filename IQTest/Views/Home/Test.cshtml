@@ -2,6 +2,12 @@
 @model QuestionVM
 @{
     ViewData["Title"] = "Test";
+
+    var startTime = ((DateTime)ViewBag.StartTime);
+
+    var endTime = startTime.AddSeconds(31);
+
+    var remainingTime = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds.ToString("#");
 }
 
 @section Css {
@@ -10,16 +16,60 @@
 }
 
 <div style="display:flex;justify-content:center;align-items:center;flex-direction:column">
-    <br /><br />
-          <div class="form-container" id="form-question">
-              <partial name="~/Views/Shared/Partials/_QuestionForm.cshtml" model="@Model" />
-          </div>
+          <br /><br />
+                <div class="form-container" id="form-question">
+                    <div id="timer">
+                        <span class="timer">Time Remaining : <span id="minRemaining"></span>:<span id="secRemaining"></span> </span>
+                    </div>
+                    <div class="form-content" id="form-content">
+                        <partial name="~/Views/Shared/Partials/_QuestionForm.cshtml" model="@Model" />
+                    </div>
+                </div>
 
         <br /><br />
     </div>
 
     @section Scripts {
         <script>
+
+            var remSeconds = @remainingTime;
+            var secondsCounter = remSeconds % 60;
+
+            console.log("s " + secondsCounter);
+
+            function formatNumber(number) {
+                if (number < 10) return '0' + number;
+                else return '' + number;
+            }
+
+            function startTick() {
+
+                document.getElementById("secRemaining").innerText = formatNumber(secondsCounter);
+                document.getElementById("minRemaining").innerText = formatNumber(parseInt(remSeconds/60));
+
+                var _tick = setInterval(function () {
+
+                    if (remSeconds > 0) {
+                        remSeconds = remSeconds-1;
+                        secondsCounter = secondsCounter - 1;
+
+                        document.getElementById("secRemaining").innerText = formatNumber(secondsCounter);
+                        document.getElementById("minRemaining").innerText = formatNumber(parseInt(remSeconds/60));
+
+                        if (secondsCounter == 0) {
+                            secondsCounter = 60;
+                        }
+                    } else {
+                        clearInterval(_tick);
+                        FinishTest();
+                    }
+
+
+                }, 1000)
+            }
+
+            startTick();
+
             function PreviousQuestion() {
                 var previousQuestion = +$('#questionNumber').val() - 1;
 
@@ -28,8 +78,8 @@
                     cache: false,
                     url: `/Home/PreviousQuestion/?number=${previousQuestion}`,
                     success: function (response) {
-                        $("#form-question").empty();
-                        $("#form-question").html(response);
+                        $("#form-content").empty();
+                        $("#form-content").html(response);
                     }
                 });
 
@@ -52,8 +102,8 @@
                     cache: false,
                     url: `/Home/NextQuestion/?number=${nextQuestion}&selectedChoice=${selectedChoice}`,
                     success: function (response) {
-                        $("#form-question").empty();
-                        $("#form-question").html(response);
+                        $("#form-content").empty();
+                        $("#form-content").html(response);
                     }
                 });
 
@@ -77,8 +127,10 @@
                     cache: false,
                     url: `/Home/FinishTest/?fqNumber=${finalQuestion}&selectedChoice=${selectedChoice}`,
                     success: function (response) {
-                        $("#form-question").empty();
-                        $("#form-question").html(response);
+                        $("#timer").empty();
+                        $("#form-content").empty();
+
+                        $("#form-content").html(response);
                     }
                 });
 

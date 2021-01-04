@@ -37,6 +37,21 @@ namespace IQTest.Controllers
 
             QuestionVM.Question = question;
 
+            var StartTime = DateTime.UtcNow;
+
+            var defaultDate = new DateTime();
+
+            if (HttpContext.Session.GetObject<DateTime>("StartTime") != defaultDate)
+            {
+                StartTime = HttpContext.Session.GetObject<DateTime>("StartTime");
+            }
+            else
+            {
+                HttpContext.Session.SetObject("StartTime", StartTime);
+            }
+
+            ViewBag.StartTime = StartTime;
+
             return View(QuestionVM);
         }
 
