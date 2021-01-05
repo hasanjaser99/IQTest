@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Score";
+}
+@model IQTest.Models.User
+
+@section Css {
+    <link rel="stylesheet" href="~/css/home/scorePage.css" />
+}
+
+<div class="container center">
+    <div id="ContactUsForm-status">
+
+    </div>
+    <span class="big-circle"></span>
+
+    <div class="form">
+        <div class="contact-info">
+            <h3 class="title">Your Score</h3>
+            
+
+            <div class="info">
+                <div class="information">
+
+                    <img src="~/images/staticImages/target.png" width="40px" />
+                    <div style="min-height:40px;padding-top:10px; padding-left:10px;">
+
+                        <p>@Model.Score</p>
+
+                    </div>
+                </div>
+                <div class="information">
+                    <img src="~/images/staticImages/stopwatch.png" width="40px"/>
+                    <div style="min-height:40px;padding-top:10px; padding-left:10px;">
+                        
+                            <p>@Model.Time.ToString("MM-ss")</p>
+                        
+                    </div>
+                </div>
+                <div class="information">
+                    <img src="~/images/staticImages/satisfaction.svg" width="40px" />
+                    <div style="min-height:40px;padding-top:10px; padding-left:10px;">
+
+
+                        @if (Model.Score <= 30)
+                        {
+                            <p>Stupid</p>
+
+
+                        }
+                        else if (Model.Score > 30 && Model.Score <= 60)
+                        {
+                            <p>Average</p>
+                        }
+                        else if (Model.Score > 60 && Model.Score <= 90)
+                        {
+                            <p>Smart</p>
+                        }
+                        else if (Model.Score > 90)
+                        {
+                            <p>Clever</p>
+                        }
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-media">
+                <p>Connect with us :</p>
+                <div class="social-icons">
+                    <a href="#">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <span class="circle one"></span>
+            <span class="circle two"></span>
+
+            <form method="post" autocomplete="off" id="ContactUsForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h3 class="title">What Is Your Name ? </h3>
+                <div class="input-container focus">
+                    <input asp-for="@Model.Name" class="input " />
+                    <label for="">Name</label>
+                    <span>Name</span>
+                </div>
+                <span asp-validation-for="@Model.Name" class="text-white font-weight-bold"></span>
+                <br />
+                <input type="submit" value="Done" class="btn mt-2" id="ContactUsForm-button" />
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial.cshtml" />
+<script>
+
+   
+
+</script>
+}

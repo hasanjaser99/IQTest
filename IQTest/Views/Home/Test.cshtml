@@ -58,7 +58,7 @@
                 });
 
             }
-
+            
             function FinishTest() {
 
                 var finalQuestion = +$('#questionNumber').val();
@@ -77,12 +77,12 @@
                     cache: false,
                     url: `/Home/FinishTest/?fqNumber=${finalQuestion}&selectedChoice=${selectedChoice}`,
                     success: function (response) {
-                        $("#form-question").empty();
-                        $("#form-question").html(response);
+                        window.location.href = response.redirectToUrl;
                     }
                 });
 
             }
+            
 
         </script>
     }
