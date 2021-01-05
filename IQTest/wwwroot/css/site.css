@@ -9,6 +9,7 @@
     
 }
 
-
-
-
+.active-link {
+    color: #2d29f2;
+    border-bottom: 3px solid #2d29f2;
+}
