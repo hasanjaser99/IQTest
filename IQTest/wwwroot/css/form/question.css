@@ -46,4 +46,9 @@
     .form-container > h1 {
         font-size: 1.1rem;
     }
+    body{
+        width:100vw;
+        overflow-x:hidden;
+    }
 }
+ 

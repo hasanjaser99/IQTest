@@ -1,97 +1,152 @@
 ﻿
-@media (max-width: 600px) {
-    body > .main-container > .get-started-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100vw;
-        height: 70vh;
+    @media (max-width: 600px) {
+        body > .main-container > .get-started-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 70vh;
+        }
+
+        .main-container {
+            width: 100%;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        .brain-img {
+            height: 230px !important;
+            width: 250px !important;
+        }
+
+        .top3-container {
+            height: 180vh;
+        }
+
+            .top3-container > .top3-cards > .top3-card {
+                border: dashed 3px #090871 !important;
+                width: 80vw !important;
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+
+            .top3-container > .top3-cards {
+                flex-direction: column;
+                height: 157vh;
+            }
+
+
+
+        .whatIQ-btn {
+            left: 10%;
+        }
+
+        .whatIQ-text {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
     }
 
-    .main-container {
-        width: 100%;
-        height: 100vh;
-        padding: 0;
-        margin: 0;
-    }
-
+@media (max-width: 350px) {
     .brain-img {
-        height: 230px !important;
-        width: 250px !important;
-    }
-
-    .top3-container {
-        height: 180vh;
-    }
-
-        .top3-container > .top3-cards > .top3-card {
-            border: dashed 3px #090871 !important;
-            width: 80vw !important;
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
-
-        .top3-container > .top3-cards {
-            flex-direction: column;
-            height: 157vh;
-        }
-
-
-
-    .whatIQ-btn {
-        left: 10%;
-    }
-
-    .whatIQ-text {
-        padding-left: 10px;
-        padding-right: 10px;
+        height: 130px !important;
+        width: 150px !important;
     }
 }
-
-
-@media (max-width: 800px) and (min-width :610px) {
-    body > .main-container > .get-started-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100vw;
-        height: 70vh;
-    }
-
-    .main-container {
-        width: 100%;
-        height: 90vh;
-        padding: 0;
-        margin: 0;
-    }
-
-    .brain-container {
-        height: 100px;
-    }
-
-    .brain-img {
-        height: 330px !important;
-        width: 350px !important;
-    }
-
-    .top3-container {
-        height: 180vh;
-    }
-
-        .top3-container > .top3-cards > .top3-card {
-            border: dashed 3px #090871 !important;
-            width: 80vw !important;
-            margin-top: 30px;
-            margin-bottom: 30px;
+    @media (max-width: 800px) and (min-width :610px) {
+        body > .main-container > .get-started-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 70vh;
         }
 
-        .top3-container > .top3-cards {
-            flex-direction: column;
-            height: 157vh;
+        .main-container {
+            width: 100%;
+            height: 90vh;
+            padding: 0;
+            margin: 0;
         }
 
-    .whatIQ-btn {
-        left: 45%;
-    }
-}
+        .brain-container {
+            height: 100px;
+        }
 
+        .brain-img {
+            height: 330px !important;
+            width: 350px !important;
+        }
+
+        .top3-container {
+            height: 180vh;
+        }
+
+            .top3-container > .top3-cards > .top3-card {
+                border: dashed 3px #090871 !important;
+                width: 80vw !important;
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+
+            .top3-container > .top3-cards {
+                flex-direction: column;
+                height: 157vh;
+            }
+
+        .whatIQ-btn {
+            left: 45%;
+        }
+    }
+
+    @media (orientation: landscape) {
+        body > .main-container > .get-started-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 70vh;
+        }
+
+        .main-container {
+            width: 100%;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        .brain-img {
+            display: none;
+        }
+
+
+        .top3-container {
+            height: 250vh;
+        }
+
+            .top3-container > .top3-cards > .top3-card {
+                border: dashed 3px #090871 !important;
+                width: 50vw !important;
+                margin-top: 30px;
+                margin-bottom: 30px;
+                height: auto;
+            }
+
+            .top3-container > .top3-cards {
+                flex-direction: column;
+                height: 220vh;
+                align-items: center;
+            }
+
+
+
+        .whatIQ-btn {
+            right: 10%;
+        }
+
+        .whatIQ-text {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }

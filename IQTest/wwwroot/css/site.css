@@ -3,10 +3,12 @@
 /* Sticky footer styles
 -------------------------------------------------- */
 
-
+body{
+    width:100vw;
+}
 .footer {
     background-color:gray;
-    
+    width:100vw;
 }
 
 .active-link {
