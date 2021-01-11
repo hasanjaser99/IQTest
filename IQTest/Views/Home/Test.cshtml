@@ -2,12 +2,14 @@
 @model QuestionVM
 @{
     ViewData["Title"] = "Test";
+    ViewData["Active"] = "GetStarted";
 
     var startTime = ((DateTime)ViewBag.StartTime);
 
     var endTime = startTime.AddSeconds(1801);
 
     var remainingTime = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds.ToString("#");
+
 }
 
 @section Css {
@@ -120,7 +122,7 @@
                 });
 
             }
-
+            
             function FinishTest() {
 
                 $.ajax({
@@ -131,10 +133,12 @@
                         $("#timer").empty();
                         $("#form-content").empty();
                         $("#form-content").html(response);
+                        window.location.href = response.redirectToUrl;
                     }
                 });
 
             }
+            
 
         </script>
     }

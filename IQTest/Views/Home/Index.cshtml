@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    ViewData["Active"] = "Home";
+
 }
 
 @section Css {
@@ -8,10 +10,10 @@
     <link rel="stylesheet" href="/css/home/animation.css">
     <link rel="stylesheet" href="/css/home/responsive.css">
 }
-
+@model List<IQTest.Models.User>
 
 <!--- first lock -->
-<div class="row main-container ">
+<div class="col-12 row main-container ">
     <div class="get-started-container col-12 col-lg-6">
         <p>
             TEST YOUR
@@ -31,7 +33,11 @@
 </div>
 
 
-
+@{ 
+    var first = Model.GetRange(0, 1).First();
+    var second= Model.GetRange(1, 1).First();
+    var third = Model.GetRange(2, 1).First();
+}
 <!--- top #3 -->
 
 <div class="row center top3-container">
@@ -50,21 +56,21 @@
                 <img src="/images/staticImages/name.png"
                      width="40px" height="40px"
                      class="mr-2">
-                Yazan Hindi
+                @second.Name
             </div>
 
             <div class="card-item">
                 <img src="/images/staticImages/target.png"
                      width="40px" height="40px"
                      class="mr-2">
-                77%
+                @second.Score / 125
             </div>
 
             <div class="card-item">
                 <img src="/images/staticImages/stopwatch.png"
                      width="40px" height="40px"
                      class="mr-2">
-                25:06
+                @second.Time.ToString("MM:ss")
             </div>
 
         </div>
@@ -79,21 +85,21 @@
                 <img src="/images/staticImages/name.png"
                      width="45px" height="40px"
                      class="mr-2">
-                Yazan Hindi
+                @first.Name
             </div>
 
             <div class="card-item">
                 <img src="/images/staticImages/target.png"
                      width="45px" height="45px"
                      class="mr-2">
-                77%
+                @first.Score / 125
             </div>
 
             <div class="card-item">
                 <img src="/images/staticImages/stopwatch.png"
                      width="45px" height="45px"
                      class="mr-2">
-                25:06
+                @first.Time.ToString("MM:ss")
             </div>
 
         </div>
@@ -108,21 +114,21 @@
                 <img src="/images/staticImages/name.png"
                      width="40px" height="40px"
                      class="mr-2">
-                Yazan Hindi
+                @third.Name
             </div>
 
             <div class="card-item">
                 <img src="/images/staticImages/target.png"
                      width="40" height="40"
                      class="mr-2">
-                77%
+                @third.Score / 125
             </div>
 
             <div class="card-item">
                 <img src="/images/staticImages/stopwatch.png"
                      width="40" height="40"
                      class="mr-2">
-                25:06
+                @third.Time.ToString("MM:ss")
             </div>
 
 
@@ -142,7 +148,7 @@
     </div>
     <div class="row justify-content-between ">
         <div class="col-12 col-lg-6 whatIQ-text ml-3">
-            Simple IQ test is a<br /> test
+            Simplly IQ test is a<br /> test
             that Measure your intelligence<br> quotient with some exciting qustions.
         </div>
         <div class="col-12 col-lg-5 whatIQ-btn-container wow animate__animated animate__fadeInRight">

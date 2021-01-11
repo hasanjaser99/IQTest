@@ -68,6 +68,7 @@ body {
     height: 74vh;
     margin-top: 10vh;
     margin-bottom: 10vh;
+   
 }
 
     .top3-container > .top3-text {
@@ -89,10 +90,11 @@ body {
 
         .top3-container > .top3-cards > .top3-card {
             width: 25vw;
-            height: 40vh;
+            height: 46vh;
             border: dashed 3px #090871;
             border-bottom: none;
             font-family: "Redressed",Arial, "Helvetica Neue", Helvetica, sans-serif;
+            
         }
 
         .top3-container > .top3-cards > .winner {
@@ -106,7 +108,7 @@ body {
 
         .top3-container > .top3-cards > .top3-card > .card-item {
             display: flex;
-            height: 6.5vh;
+            min-height: 6.5vh;
             align-items: center;
             color: white;
             font-size: 20px;
@@ -158,7 +160,7 @@ body {
 .whatIQ-btn {
     position: absolute;
     top: 40%;
-    left: 20%;
+    right: 10vw;
     background-color: white;
     color: #2d29f2;
     width: 275px;

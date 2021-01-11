@@ -25,7 +25,8 @@ namespace IQTest.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var Top3 = _db.Users.OrderByDescending(u => u.Score).Take(3).ToList();
+            return View(Top3);
         }
 
         public IActionResult Test()
@@ -56,8 +57,35 @@ namespace IQTest.Controllers
         }
 
 
+        public IActionResult Score( Guid id)
+        {
+           User user = _db.Users.FirstOrDefault(u => u.Id == id);
 
-     
+            return View(user);
+        }
+
+        [HttpPost]
+        public IActionResult Score(User user)
+        {
+            try { 
+                if (ModelState.IsValid)
+                {
+                    User oldUser = _db.Users.FirstOrDefault(u => u.Id == user.Id);
+                    oldUser.Name = user.Name;
+                    _db.SaveChanges();
+                    return RedirectToAction(nameof(Index));
+                }
+            }catch(Exception e)
+            {
+                return View(user);
+            }
+            return View(user);
+
+        }
+
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -111,10 +139,11 @@ namespace IQTest.Controllers
         }
 
 
+
         [HttpPost]
         public IActionResult SaveAnswer(int number, string selectedChoice)
         {
-            // Get current question
+
             var currentQuestion = _db.Questions.FirstOrDefault(q => q.Number == number);
 
             var currentQuestionVM = new QuestionVM()
@@ -177,15 +206,31 @@ namespace IQTest.Controllers
             // calcualte result of the test
             foreach (var qVM in questionsStore.Questions)
             {
-                if(qVM.SelectedChoice == qVM.Question.Answer)
+                if (qVM.SelectedChoice == qVM.Question.Answer)
                 {
                     finialScore += qVM.Question.Score;
                 }
             }
 
-            return PartialView("~/Views/Shared/Partials/_FinishTest.cshtml"
-                , finialScore);
+            User user = new User()
+            {
+                Id = new Guid(),
+                Score = finialScore,
+                Time = new DateTime(),
+                Name= "anonymous"
+            };
+
+            _db.Users.Add(user);
+            _db.SaveChanges();
+
+            return Json(new { redirectToUrl = Url.Action(nameof(Score), "Home", new { id = user.Id }) });
+
+            //return RedirectToAction(nameof(Score),"Home", new { score = finialScore, estimatingTime = new DateTime() });
+
+
         }
+
+        
 
         #endregion
     }
