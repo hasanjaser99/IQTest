@@ -5,7 +5,7 @@
 
     var startTime = ((DateTime)ViewBag.StartTime);
 
-    var endTime = startTime.AddSeconds(31);
+    var endTime = startTime.AddSeconds(1801);
 
     var remainingTime = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds.ToString("#");
 }
@@ -70,6 +70,27 @@
 
             startTick();
 
+
+            $('input:radio').on('click', function (e) {
+
+                //e.currenTarget.value points to the property value of the 'clicked' target.
+
+                var selectedChoice = e.currentTarget.value;
+
+                var questionNumber = $('#questionNumber').val();
+
+
+                $.ajax({
+                    type: 'POST',
+                    cache: false,
+                    url: `/Home/SaveAnswer/?number=${questionNumber}&selectedChoice=${selectedChoice}`,
+                });
+
+
+            });
+
+
+
             function PreviousQuestion() {
                 var previousQuestion = +$('#questionNumber').val() - 1;
 
@@ -88,19 +109,10 @@
             function NextQuestion() {
                 var nextQuestion = +$('#questionNumber').val() + 1;
 
-                var selectedChoice = "";
-
-                for (var i = 1; i <= 4; i++) {
-                    if ($("#Choice" + i).is(":checked")) {
-                        selectedChoice = $("#Choice" + i).val();
-                        break;
-                    }
-                }
-
                 $.ajax({
                     type: 'POST',
                     cache: false,
-                    url: `/Home/NextQuestion/?number=${nextQuestion}&selectedChoice=${selectedChoice}`,
+                    url: `/Home/NextQuestion/?number=${nextQuestion}`,
                     success: function (response) {
                         $("#form-content").empty();
                         $("#form-content").html(response);
@@ -111,25 +123,13 @@
 
             function FinishTest() {
 
-                var finalQuestion = +$('#questionNumber').val();
-
-                var selectedChoice = "";
-
-                for (var i = 1; i <= 4; i++) {
-                    if ($("#Choice" + i).is(":checked")) {
-                        selectedChoice = $("#Choice" + i).val();
-                        break;
-                    }
-                }
-
                 $.ajax({
                     type: 'POST',
                     cache: false,
-                    url: `/Home/FinishTest/?fqNumber=${finalQuestion}&selectedChoice=${selectedChoice}`,
+                    url: `/Home/FinishTest`,
                     success: function (response) {
                         $("#timer").empty();
                         $("#form-content").empty();
-
                         $("#form-content").html(response);
                     }
                 });

@@ -1,4 +1,7 @@
 ﻿@using IQTest.Models.ViewModels
+@using IQTest.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 @model QuestionVM
 
 @{
@@ -70,5 +73,35 @@
     else
     {
         <button onclick="FinishTest()" class="main-btn center">Finish</button>
+    }
+</div>
+<br />
+<br />
+<br />
+
+<div class="row d-flex justify-content-center" style="width:90%;">
+    @for (int qNumber = 1; qNumber <= 25; qNumber++)
+    {
+        <div class="navContainer" onclick="NextQuestion(`@qNumber`)">
+            <div style="height:55%;border-bottom:1px solid black;width:100%;text-align:center;">
+                <span style="color:#2d29f2;font-size:1rem;font-weight:bold;">@qNumber</span>
+            </div>
+            @{
+                var questionsStore = HttpContextAccessor.HttpContext.Session.GetObject<QuestionsVM>("Questions");
+
+                if (questionsStore != null)
+                {
+                    var questionVM = questionsStore.Questions.FirstOrDefault(qvm => qvm.Question.Number == qNumber);
+
+                    if (questionVM != null)
+                    {
+                        <div class="fill">
+                        </div>
+                    }
+                }
+
+            }
+
+        </div>
     }
 </div>

@@ -67,10 +67,55 @@ namespace IQTest.Controllers
 
         #region API_CALLS
         [HttpPost]
-        public IActionResult NextQuestion(int number, string selectedChoice)
+        public IActionResult NextQuestion(int number)
+        {
+
+            var questionsStore = HttpContext.Session.GetObject<QuestionsVM>("Questions");
+
+            // Get Next question
+
+            //initialize view model
+            var nextQuestionVM = new QuestionVM();
+
+            // check if next question exists in session
+            var nxtQuestionVM = questionsStore.Questions.FirstOrDefault(q => q.Question.Number == number);
+
+            if (nxtQuestionVM != null)
+            {
+                nextQuestionVM = nxtQuestionVM;
+            }
+            else
+            {
+                var nextQuestion = _db.Questions.FirstOrDefault(q => q.Number == number);
+
+                nextQuestionVM.Question = nextQuestion;
+
+            }
+
+            return PartialView("~/Views/Shared/Partials/_QuestionForm.cshtml"
+                , nextQuestionVM);
+
+        }
+
+
+        [HttpPost]
+        public IActionResult PreviousQuestion(int number)
+        {
+            var questions = HttpContext.Session.GetObject<QuestionsVM>("Questions").Questions;
+
+            var prevQuestionVM = questions.FirstOrDefault(q => q.Question.Number == number);
+
+            return PartialView("~/Views/Shared/Partials/_QuestionForm.cshtml"
+                , prevQuestionVM);
+
+        }
+
+
+        [HttpPost]
+        public IActionResult SaveAnswer(int number, string selectedChoice)
         {
             // Get current question
-            var currentQuestion = _db.Questions.FirstOrDefault(q => q.Number == number - 1);
+            var currentQuestion = _db.Questions.FirstOrDefault(q => q.Number == number);
 
             var currentQuestionVM = new QuestionVM()
             {
@@ -94,7 +139,8 @@ namespace IQTest.Controllers
                 questionsStore = questionsVM;
 
                 HttpContext.Session.SetObject("Questions", questionsStore);
-            }else
+            }
+            else
             {
                 var questionVM = questionsStore.Questions
                     .FirstOrDefault(qs => qs.Question.Id == currentQuestionVM.Question.Id);
@@ -111,62 +157,15 @@ namespace IQTest.Controllers
                 HttpContext.Session.SetObject("Questions", questionsStore);
             }
 
-
-            // Get Next question
-
-            //initialize view model
-            var nextQuestionVM = new QuestionVM();
-
-            // check if next question exists in session
-            var nxtQuestionVM = questionsStore.Questions.FirstOrDefault(q => q.Question.Number == number);
-
-            if (nxtQuestionVM != null)
-            {
-                nextQuestionVM = nxtQuestionVM;
-            }
-            else
-            {
-                var nextQuestion = _db.Questions.FirstOrDefault(q => q.Number == number);
-
-                nextQuestionVM.Question = nextQuestion;
-
-                nextQuestionVM.SelectedChoice = selectedChoice;
-            }
-
-            return PartialView("~/Views/Shared/Partials/_QuestionForm.cshtml"
-                , nextQuestionVM);
+            return Json(new { message = "Saved Successfully" });
 
         }
 
         [HttpPost]
-        public IActionResult PreviousQuestion(int number)
+        public IActionResult FinishTest()
         {
-            var questions = HttpContext.Session.GetObject<QuestionsVM>("Questions").Questions;
-
-            var prevQuestionVM = questions.FirstOrDefault(q => q.Question.Number == number);
-
-            return PartialView("~/Views/Shared/Partials/_QuestionForm.cshtml"
-                , prevQuestionVM);
-
-        }
-
-        [HttpPost]
-        public IActionResult FinishTest(int fqNumber, string selectedChoice)
-        {
-            // get final question
-            var finalQuestion = _db.Questions.FirstOrDefault(q => q.Number == fqNumber);
-
-            var finalQuestionVM = new QuestionVM()
-            {
-                Question = finalQuestion,
-                SelectedChoice = selectedChoice
-            };
-
 
             var questionsStore = HttpContext.Session.GetObject<QuestionsVM>("Questions");
-
-            // store final question in questions store
-            questionsStore.Questions = questionsStore.Questions.Append(finalQuestionVM);
 
 
             // Clear Sessions
