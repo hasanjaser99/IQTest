@@ -100,53 +100,53 @@
         }
     }
 
-    @media (orientation: landscape) {
-        body > .main-container > .get-started-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100vw;
-            height: 70vh;
-        }
-
-        .main-container {
-            width: 100%;
-            height: 100vh;
-            padding: 0;
-            margin: 0;
-        }
-
-        .brain-img {
-            display: none;
-        }
-
-
-        .top3-container {
-            height: 250vh;
-        }
-
-            .top3-container > .top3-cards > .top3-card {
-                border: dashed 3px #090871 !important;
-                width: 50vw !important;
-                margin-top: 30px;
-                margin-bottom: 30px;
-                height: auto;
-            }
-
-            .top3-container > .top3-cards {
-                flex-direction: column;
-                height: 220vh;
-                align-items: center;
-            }
-
-
-
-        .whatIQ-btn {
-            right: 10%;
-        }
-
-        .whatIQ-text {
-            padding-left: 10px;
-            padding-right: 10px;
-        }
+@media (orientation: landscape) and (min-width: 481px) and (max-width: 815px) {
+    body > .main-container > .get-started-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 70vh;
     }
+
+    .main-container {
+        width: 100%;
+        height: 100vh;
+        padding: 0;
+        margin: 0;
+    }
+
+    .brain-img {
+        display: none;
+    }
+
+
+    .top3-container {
+        height: 250vh;
+    }
+
+        .top3-container > .top3-cards > .top3-card {
+            border: dashed 3px #090871 !important;
+            width: 50vw !important;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            height: auto;
+        }
+
+        .top3-container > .top3-cards {
+            flex-direction: column;
+            height: 229vh;
+            align-items: center;
+        }
+
+
+
+    .whatIQ-btn {
+        right: 10%;
+    }
+
+    .whatIQ-text {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
