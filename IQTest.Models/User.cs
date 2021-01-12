@@ -13,7 +13,7 @@ namespace IQTest.Models
 
         public int Score { get; set; }
 
-        public DateTime Time { get; set; }
+        public TimeSpan Time { get; set; }
 
     }
 }

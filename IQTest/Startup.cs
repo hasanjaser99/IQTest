@@ -41,6 +41,8 @@ namespace IQTest
                 options.Cookie.IsEssential = true;
             });
 
+            services.AddHttpContextAccessor();
+
 
         }
 

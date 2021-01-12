@@ -23,7 +23,7 @@
             </span>
         </p>
         <div class="main-btn-container center ">
-            <a class="main-btn center" asp-action="Test">Get Started</a>
+            <a class="main-btn center" asp-controller="Test" asp-action="Index">Get Started</a>
         </div>
     </div>
 
@@ -70,7 +70,7 @@
                 <img src="/images/staticImages/stopwatch.png"
                      width="40px" height="40px"
                      class="mr-2">
-                @second.Time.ToString("MM:ss")
+                @second.Time.ToString(@"mm\:ss")
             </div>
 
         </div>
@@ -99,7 +99,7 @@
                 <img src="/images/staticImages/stopwatch.png"
                      width="45px" height="45px"
                      class="mr-2">
-                @first.Time.ToString("MM:ss")
+                @first.Time.ToString(@"mm\:ss")
             </div>
 
         </div>
@@ -128,7 +128,7 @@
                 <img src="/images/staticImages/stopwatch.png"
                      width="40" height="40"
                      class="mr-2">
-                @third.Time.ToString("MM:ss")
+                @third.Time.ToString(@"mm\:ss")
             </div>
 
 
@@ -153,7 +153,7 @@
         </div>
         <div class="col-12 col-lg-5 whatIQ-btn-container wow animate__animated animate__fadeInRight">
             <img class=" whatIQ-img" src="/images/staticImages/blob.png" />
-            <a class=" whatIQ-btn center" asp-action="Test">Get Started</a>
+            <a class=" whatIQ-btn center" asp-controller="Test" asp-action="Index">Get Started</a>
         </div>
     </div>
 </div>

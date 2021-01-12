@@ -1,0 +1,95 @@
+﻿@using IQTest.Models.ViewModels
+@model QuestionVM
+@{
+    ViewData["Title"] = "Test";
+    ViewData["Active"] = "GetStarted";
+
+    var startTime = ((DateTime)ViewBag.StartTime);
+
+    var endTime = startTime.AddSeconds(1801);
+
+    var remainingTime = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds.ToString("#");
+
+}
+
+@section Css {
+
+    <link rel="stylesheet" href="/css/form/question.css">
+}
+
+<div style="display:flex;justify-content:center;align-items:center;flex-direction:column">
+    <br /><br />
+    <div class="form-container" id="form-question">
+        <div id="timer">
+            <span class="timer">Time Remaining : <span id="minRemaining"></span>:<span id="secRemaining"></span> </span>
+        </div>
+        <div class="form-content" id="form-content">
+            <partial name="~/Views/Shared/Partials/_QuestionForm.cshtml" model="@Model" />
+        </div>
+    </div>
+
+    <br /><br />
+</div>
+
+@section Scripts {
+    <script>
+            var remSeconds = @remainingTime;
+            var secondsCounter = remSeconds % 60;
+
+            function formatNumber(number) {
+                if (number < 10) return '0' + number;
+                else return '' + number;
+            }
+
+            function startTick() {
+
+                document.getElementById("secRemaining").innerText = formatNumber(secondsCounter);
+                document.getElementById("minRemaining").innerText = formatNumber(parseInt(remSeconds/60));
+
+                var _tick = setInterval(function () {
+
+                    if (remSeconds > 0) {
+                        remSeconds = remSeconds-1;
+                        secondsCounter = secondsCounter - 1;
+
+                        document.getElementById("secRemaining").innerText = formatNumber(secondsCounter);
+                        document.getElementById("minRemaining").innerText = formatNumber(parseInt(remSeconds/60));
+
+                        if (secondsCounter == 0) {
+                            secondsCounter = 60;
+                        }
+                    } else {
+                        clearInterval(_tick);
+                        FinishTest();
+                    }
+
+
+                }, 1000)
+            }
+
+            startTick();
+
+            $('input:radio').on('click', function (e) {
+
+                //e.currenTarget.value points to the property value of the 'clicked' target.
+
+                var selectedChoice = e.currentTarget.value;
+
+                var questionNumber = $('#questionNumber').val();
+
+
+                $.ajax({
+                    type: 'POST',
+                    cache: false,
+                    url: `/Test/SaveAnswer/?number=${questionNumber}&selectedChoice=${selectedChoice}`,
+                });
+
+
+            });
+
+
+    </script>
+    
+    <script src="~/js/Test.js"></script>
+}
+
