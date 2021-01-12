@@ -18,7 +18,7 @@
     <div class="form">
         <div class="contact-info">
             <h3 class="title">Your Score</h3>
-            
+
 
             <div class="info">
                 <div class="information">
@@ -31,11 +31,11 @@
                     </div>
                 </div>
                 <div class="information">
-                    <img src="~/images/staticImages/stopwatch.png" width="40px"/>
+                    <img src="~/images/staticImages/stopwatch.png" width="40px" />
                     <div style="min-height:40px;padding-top:10px; padding-left:10px;">
-                        
-                            <p>@Model.Time.ToString("MM-ss")</p>
-                        
+
+                        <p>@Model.Time.ToString(@"mm\:ss")</p>
+
                     </div>
                 </div>
                 <div class="information">
@@ -112,9 +112,9 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial.cshtml" />
-<script>
+    <script>
 
-   
 
-</script>
+
+    </script>
 }
