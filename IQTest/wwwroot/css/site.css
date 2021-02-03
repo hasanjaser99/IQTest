@@ -5,10 +5,11 @@
 
 body{
     width:100vw;
+    overflow-x: hidden;
 }
 .footer {
     background-color:gray;
-    width:100vw;
+    width:120vw;
 }
 
 .active-link {

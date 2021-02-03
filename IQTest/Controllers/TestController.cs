@@ -62,7 +62,7 @@ namespace IQTest.Controllers
                     User oldUser = _db.Users.FirstOrDefault(u => u.Id == user.Id);
                     oldUser.Name = user.Name;
                     _db.SaveChanges();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Index", "Home");
                 }
             }
             catch (Exception e)
@@ -85,20 +85,25 @@ namespace IQTest.Controllers
             //initialize view model
             var nextQuestionVM = new QuestionVM();
 
-            // check if next question exists in session
-            var nxtQuestionVM = questionsStore.Questions.FirstOrDefault(q => q.Question.Number == number);
-
-            if (nxtQuestionVM != null)
+            //check if there is no questions in session
+            if(questionsStore == null)
             {
-                nextQuestionVM = nxtQuestionVM;
-            }
-            else
+                nextQuestionVM.Question = _db.Questions.FirstOrDefault(q => q.Number == number);
+            }else
             {
-                var nextQuestion = _db.Questions.FirstOrDefault(q => q.Number == number);
+                // check if next question exists in session
+                var nxtQuestionVM = questionsStore.Questions.FirstOrDefault(q => q.Question.Number == number);
 
-                nextQuestionVM.Question = nextQuestion;
-
+                if (nxtQuestionVM != null)
+                {
+                    nextQuestionVM = nxtQuestionVM;
+                }
+                else
+                {
+                    nextQuestionVM.Question = _db.Questions.FirstOrDefault(q => q.Number == number);
+                }
             }
+
 
             return PartialView("~/Views/Shared/Partials/_QuestionForm.cshtml"
                 , nextQuestionVM);
@@ -109,9 +114,26 @@ namespace IQTest.Controllers
         [HttpPost]
         public IActionResult PreviousQuestion(int number)
         {
-            var questions = HttpContext.Session.GetObject<QuestionsVM>("Questions").Questions;
+            var questionsStore = HttpContext.Session.GetObject<QuestionsVM>("Questions");
 
-            var prevQuestionVM = questions.FirstOrDefault(q => q.Question.Number == number);
+            var prevQuestionVM = new QuestionVM();
+
+            if (questionsStore != null)
+            {
+                prevQuestionVM = questionsStore.Questions.FirstOrDefault(q => q.Question.Number == number);
+
+                if(prevQuestionVM == null)
+                {
+                    prevQuestionVM = new QuestionVM() {
+                        Question = _db.Questions.FirstOrDefault(q => q.Number == number)
+                    };
+                }
+
+            }
+            else
+            {
+                prevQuestionVM.Question = _db.Questions.FirstOrDefault(q => q.Number == number);
+            }
 
             return PartialView("~/Views/Shared/Partials/_QuestionForm.cshtml"
                 , prevQuestionVM);
