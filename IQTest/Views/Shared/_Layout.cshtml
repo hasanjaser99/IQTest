@@ -29,9 +29,20 @@
             return "";
         }
 
+        bool HideNavBar()
+        {
+            string activePage = ViewData["Active"].ToString();
+            if (activePage == "GetStarted")
+            {
+                return true;
 
+            }
+            return false;
+        }
 
     }
+    @if (!HideNavBar())
+    {
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
         <a class="navbar-brand ml-2" asp-controller="Home" asp-action="Index">
@@ -49,15 +60,12 @@
                        asp-controller="Home" asp-action="Index">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-primary @isActive("GetStarted") " asp-controller="Test" asp-action="Index">Get started</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link text-primary @isActive("ContactUs")" asp-controller="ContactUs" asp-action="Index">Contant Us</a>
                 </li>
             </ul>
         </div>
     </nav>
-
+    }
 
     @RenderBody()
 
